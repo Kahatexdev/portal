@@ -4,14 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Announcement extends Model
+class SuggestionBox extends Model
 {
-    protected $table = 'announcements';
-    protected $primaryKey = 'id';
     protected $fillable = [
-        'title',
-        'content',
-        'image',
+        'name',
+        'phone',
+        'message',
     ];
 
     protected $casts = [

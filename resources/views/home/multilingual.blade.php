@@ -6,6 +6,98 @@
 @endphp
 
 @section('content')
+
+<style>
+    /* -------------------------------------
+   Kontainer
+---------------------------------------*/
+.announcement-hero {
+  background: var(--bs-white);
+  overflow: hidden;
+  position: relative;
+  border-radius: .75rem; /* rounded-4 */
+}
+
+/* -------------------------------------
+   Background Logo (floating)
+---------------------------------------*/
+.floating-logo {
+  animation: float 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes float {
+  0%,100%   { transform: translate(-50%, -50%) translateY(0); }
+  50%       { transform: translate(-50%, -50%) translateY(-10px); }
+}
+
+/* -------------------------------------
+   Indicators: bulatan kecil di bawah
+---------------------------------------*/
+.carousel-indicators {
+  bottom: 1rem;           /* geser ke atas 1rem dari bawah */
+}
+
+.carousel-indicators .custom-indicator {
+  width: 12px;
+  height: 12px;
+  background-color: rgba(255,255,255,0.5);
+  border: none;
+  margin: 0 .25rem;
+  transition: background-color .3s, transform .3s;
+}
+
+.carousel-indicators .custom-indicator.active {
+  background-color: var(--bs-primary);
+  transform: scale(1.25);
+}
+
+/* -------------------------------------
+   Gambar slide
+---------------------------------------*/
+.carousel-image {
+  object-fit: cover;
+}
+
+/* -------------------------------------
+   Overlay gelap tipis di atas gambar
+---------------------------------------*/
+.carousel-overlay {
+  background: rgba(0,0,0,0.35);
+}
+
+/* -------------------------------------
+   Caption
+---------------------------------------*/
+.carousel-caption {
+  bottom: 1.5rem;
+  left: 1.5rem;
+  right: auto;
+  text-align: left;
+}
+
+/* -------------------------------------
+   Kontrol prev/next (panah)
+---------------------------------------*/
+.custom-control {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.custom-control-icon {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  display: none; /* sembunyikan ikon default */
+}
+
+</style>
     <!-- Start Header Area -->
     <header class="rbt-header rbt-header-default">
         <div class="rbt-sticky-placeholder"></div>
@@ -118,13 +210,13 @@
                     <div class="logo">
                         <div class="logo logo-dark">
                             <a href="#">
-                                <img src="{{ asset('assets/images/logo/khtpanjang.jpeg') }}" alt="Education Logo Images">
+                                <img src="{{ asset('assets/images/logo/logokhtx.png') }}" alt="Education Logo Images">
                             </a>
                         </div>
 
                         <div class="logo d-none logo-light">
                             <a href="#">
-                                <img src="{{ asset('assets/images/dark/logo/khtpanjang.jpeg') }}"
+                                <img src="{{ asset('assets/images/logo/logokhtx.png') }}"
                                     alt="Education Logo Images">
                             </a>
                         </div>
@@ -238,33 +330,91 @@
                 </div>
 
                 <div class="container">
-                    <div class="row col-wrap">
+                    <div class="row align-items-center">
                         <div class="col-xl-6">
-                            <div class="inner position-relative">
-                                <div class="shape-1 scene">
-                                    <span data-depth="3">
-                                        <img src="{{ asset('assets/images/logo/logokhtx.png') }}" alt="" style="opacity: 0.1;" width="150px">
-                                    </span>
+                            <div class="announcement-hero shadow-lg">
+                              <!-- Floating Logo -->
+                              <div class="position-absolute top-50 start-50 translate-middle z-1">
+                                <img src="{{ asset('assets/images/logo/logokhtx.png') }}"
+                                     class="opacity-25 floating-logo"
+                                     style="width:clamp(100px,20vw,200px)"
+                                     alt="Background Logo" />
+                              </div>
+                          
+                              <!-- Carousel -->
+                              <div id="announcementCarousel"
+                                   class="carousel carousel-dark slide h-100"
+                                   data-bs-ride="carousel"
+                                   data-bs-interval="5000"
+                                   data-bs-pause="hover">
+                          
+                                {{-- Indicators --}}
+                                <div class="carousel-indicators">
+                                  @foreach($pengumuman as $i => $announcement)
+                                    <button
+                                      type="button"
+                                      data-bs-target="#announcementCarousel"
+                                      data-bs-slide-to="{{ $i }}"
+                                      class="rounded-circle custom-indicator @if($i===0) active @endif"
+                                      @if($i===0) aria-current="true" @endif
+                                      aria-label="Slide {{ $i+1 }}"
+                                    ></button>
+                                  @endforeach
                                 </div>
-                                <div class="title-in-shape d-flex flex-wrap align-items-center gap-2">
-                                    <h1 class="title">Selamat Datang di</h1>
+                          
+                                {{-- Slides --}}
+                                <div class="carousel-inner h-100 rounded-4">
+                                  @foreach($pengumuman as $i => $announcement)
+                                    <div class="carousel-item h-100 @if($i===0) active @endif"
+                                         data-bs-interval="{{ $announcement->interval ?? 5000 }}">
+                                      <div class="position-relative h-100">
+                                        <img src="{{ asset($announcement->image
+                                                            ? 'storage/' . $announcement->image
+                                                            : 'assets/images/banner/banner-shape.png') }}"
+                                             class="d-block w-100 h-100 carousel-image"
+                                             alt="{{ $announcement->title }}" />
+                                        <div class="position-absolute top-0 start-0 w-100 h-100 carousel-overlay"></div>
+                                      </div>
+                          
+                                      <div class="carousel-caption d-block text-start">
+                                        <span class="badge bg-primary rounded-pill mb-2 px-3 py-2">
+                                          <i class="fas fa-bullhorn me-2"></i>Pengumuman
+                                        </span>
+                                        <h2 class="h4 fw-bold mb-2 text-white">
+                                          {{ $announcement->title }}
+                                        </h2>
+                                        <p class="text-white-50 mb-3 d-none d-md-block">
+                                          {{ Str::limit($announcement->body, 120) }}
+                                        </p>
+                                        <div class="d-flex align-items-center gap-3 text-white-50">
+                                          <small><i class="fas fa-calendar-alt me-2"></i>{{ $announcement->created_at->format('d M Y') }}</small>
+                                          <small class="d-none d-sm-flex"><i class="fas fa-clock me-2"></i>{{ $announcement->created_at->format('H:i') }}</small>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  @endforeach
                                 </div>
-                                <h1 class="title">PORTAL KAHATEX
-                                </h1>
-                                <h1 class="title">DEP KAOSKAKI
-                                </h1>
-                                <p class="description mt--20 mb--40">PORTAL ini merupakan portal resmi yang bertujuan untuk
-                                    mempermudah
-                                    dan meningkatkan efisiensi dalam proses pengelolaan data produksi.</p>
-                                <a class="rbt-btn btn-gradient hover-icon-reverse" href="#portal">
-                                    <span class="icon-reverse-wrapper">
-                                        <span class="btn-text">MASUK PORTAL</span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                        <span class="btn-icon"><i class="feather-arrow-right"></i></span>
-                                    </span>
-                                </a>
+                          
+                                {{-- Controls --}}
+                                <button class="carousel-control-prev custom-control" type="button"
+                                        data-bs-target="#announcementCarousel" data-bs-slide="prev">
+                                  <span class="custom-control-icon bg-white rounded-circle shadow">
+                                    <i class="fas fa-chevron-left text-dark"></i>
+                                  </span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next custom-control" type="button"
+                                        data-bs-target="#announcementCarousel" data-bs-slide="next">
+                                  <span class="custom-control-icon bg-white rounded-circle shadow">
+                                    <i class="fas fa-chevron-right text-dark"></i>
+                                  </span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div>
                             </div>
-                        </div>
+                          </div>
+                          
+                        
                         <div class="col-xl-6">
                             @php
                                 $count = $portals->count();
@@ -479,13 +629,13 @@
                     <div class="col-lg-4 col-md-4 col-12">
                         <div class="load-more-btn text-start text-md-end">
                             {{-- icon pengumuman --}}
-                            <a class="rbt-btn btn-gradient btn-sm hover-icon-reverse" href="{{ route('courseCard3') }}">
+                            {{-- <a class="rbt-btn btn-gradient btn-sm hover-icon-reverse" href="#pengumuman">
                                 <span class="icon-reverse-wrapper">
                                     <span class="btn-text">Lihat Semua</span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                     <span class="btn-icon"><i class="feather-arrow-right"></i></span>
                                 </span>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 </div>
@@ -497,7 +647,7 @@
                             <div class="rbt-card variation-02 rbt-hover">
                                 <div class="rbt-card-img"
                                     style="width:390px; height:260px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
-                                    <a href="{{ route('courseDetails') }}"
+                                    <a href="#pengumuman"
                                         style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
                                         <img src="{{ asset('storage/' . $announcement->image) }}" alt="Card image"
                                             style="width:100%; height:100%; object-fit:cover;">
@@ -505,10 +655,10 @@
                                 </div>
                                 <div class="rbt-card-body">
                                     <h5 class="rbt-card-title"><a
-                                            href="{{ route('courseDetails') }}">{{ Str::limit($announcement->title, 25) }}</a>
+                                            href="#pengumuman">{{ $announcement->title }}</a>
                                     </h5>
-                                    <p class="rbt-card-text">{{ Str::limit($announcement->content, 100) }}</p>
-                                    <div class="rbt-card-bottom">
+                                    <p class="rbt-card-text">{{ $announcement->content }}</p>
+                                    {{-- <div class="rbt-card-bottom">
                                         <a class="transparent-button" href="{{ route('courseDetails') }}">Lihat
                                             Selengkapnya<i><svg width="17" height="12"
                                                     xmlns="http://www.w3.org/2000/svg">
@@ -517,7 +667,7 @@
                                                         <path stroke-linecap="square" d="M.663 5.572h14.594" />
                                                     </g>
                                                 </svg></i></a>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
@@ -571,19 +721,21 @@
                                 <span class="subtitle bg-primary-opacity">KOTAK SARAN</span>
                             </div>
                             <h3 class="title">Silahkan Isi Form di bawah ini</h3>
-                            <form id="contact-form" class="w-100">
+                            <form id="contact-form" class="w-100" action="{{ route('suggestionBox.store') }}" method="POST">
+                                {{-- CSRF Token --}}
+                                @csrf
                                 <div class="form-group">
-                                    <input name="con_name" type="text">
+                                    <input name="name" type="text">
                                     <label>Nama</label>
                                     <span class="focus-border"></span>
                                 </div>
                                 <div class="form-group">
-                                    <input type="text">
+                                    <input name="phone" type="text">
                                     <label>Telepon</label>
                                     <span class="focus-border"></span>
                                 </div>
                                 <div class="form-group">
-                                    <textarea name="con_saran" rows="4"></textarea>
+                                    <textarea name="message" rows="4"></textarea>
                                     <label>Saran</label>
                                     <span class="focus-border"></span>
                                 </div>
