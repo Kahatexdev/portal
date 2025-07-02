@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'PORTAL KAHATEX'),
 
     /*
     |--------------------------------------------------------------------------
@@ -52,7 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://172.23.39.117/portal/public'),
+    'url' => env('APP_URL', 'http://172.23.39.117/portal/'),
+    'asset_url' => env('APP_ASSET_URL', 'http://172.23.39.117/portal/'),
 
     /*
     |--------------------------------------------------------------------------
@@ -65,7 +66,7 @@ return [
     |
     */
 
-    'timezone' => env('APP_TIMEZONE', 'UTC'),
+    'timezone' => env('APP_TIMEZONE', 'Asia/Jakarta'),
 
     /*
     |--------------------------------------------------------------------------

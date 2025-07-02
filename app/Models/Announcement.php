@@ -18,4 +18,16 @@ class Announcement extends Model
         'created_at' => 'datetime',
         'updated_at' => 'datetime',
     ];
+
+    public function setGambarAttribute($value)
+    {
+        // kalau sudah full URL, langsung simpan
+        if (str_starts_with($value, 'http')) {
+            $this->attributes['images'] = $value;
+        } else {
+            // Storage::url → "/storage/xxx.png"
+            // URL::to       → "http://host/…/storage/xxx.png"
+            $this->attributes['images'] = URL::to(Storage::url($value));
+        }
+    }
 }

@@ -369,7 +369,7 @@
                                          data-bs-interval="{{ $announcement->interval ?? 5000 }}">
                                       <div class="position-relative h-100">
                                         <img src="{{ asset($announcement->image
-                                                            ? 'storage/' . $announcement->image
+                                                            ? 'public/storage/' . $announcement->image
                                                             : 'assets/images/banner/banner-shape.png') }}"
                                              class="d-block w-100 h-100 carousel-image"
                                              alt="{{ $announcement->title }}" />
@@ -447,7 +447,7 @@
                                                 top:  {{ round($y - $flagHalf) }}px;
                                                 left: {{ round($x - $flagHalf) }}px;
                                             ">
-                                            <img src="{{ asset('storage/' . $portal->image) }}"
+                                            <img src="{{ asset('public/storage/' . $portal->image) }}"
                                                 alt="{{ $portal->name }}">
                                         </div>
                                     @endforeach
@@ -581,7 +581,7 @@
                                         <div class="rbt-card variation-03 rbt-hover">
                                             <div class="rbt-card-img">
                                                 <a class="thumbnail-link" href="{{ $portal->url }}" target="_blank">
-                                                    <img src="{{ asset('storage/' . $portal->image) }}"
+                                                    <img src="{{ asset('public/storage/' . $portal->image) }}"
                                                         alt="{{ $portal->name }}">
                                                     <span class="rbt-btn btn-white icon-hover btn-md">
                                                         <span class="btn-text">MASUK PORTAL</span>
@@ -649,7 +649,7 @@
                                     style="width:390px; height:260px; overflow:hidden; display:flex; align-items:center; justify-content:center;">
                                     <a href="#pengumuman"
                                         style="width:100%; height:100%; display:flex; align-items:center; justify-content:center;">
-                                        <img src="{{ asset('storage/' . $announcement->image) }}" alt="Card image"
+                                        <img src="{{ asset('public/storage/' . $announcement->image) }}" alt="Card image"
                                             style="width:100%; height:100%; object-fit:cover;">
                                     </a>
                                 </div>

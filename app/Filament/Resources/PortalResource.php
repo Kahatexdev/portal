@@ -36,8 +36,16 @@ class PortalResource extends Resource
                     ->default('general')
                     ->required(),
                 Forms\Components\FileUpload::make('image')
-                    ->image(),
-                Forms\Components\TextInput::make('url')
+                    ->disk('public')            // ← disk 'public' yang sudah benar di filesystems.php
+                    ->directory('portal')      // ← simpan di storage/app/public/uploads
+                    ->visibility('public')      // ← pastikan visibilitasnya publik
+                    ->preserveFilenames()        // ← untuk menjaga nama file tetap sama
+                    ->enableDownload()          // ← memungkinkan file diunduh
+                    ->enableOpen()              // ← memungkinkan file dibuka
+                    ->required()
+                    ->maxSize(2048)             // ← ukuran maksimum file dalam KB (1 MB)
+                    ->acceptedFileTypes(['image/*']), // ← hanya menerima file gambar
+            Forms\Components\TextInput::make('url')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('description')
@@ -56,6 +64,7 @@ class PortalResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('image'),
+                
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')

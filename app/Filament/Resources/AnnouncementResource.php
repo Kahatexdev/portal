@@ -30,7 +30,15 @@ class AnnouncementResource extends Resource
                     ->required()
                     ->columnSpanFull(),
                 Forms\Components\FileUpload::make('image')
-                    ->image(),
+                    ->disk('public')            // ← disk 'public' yang sudah benar di filesystems.php
+                    ->directory('announcement')      // ← simpan di storage/app/public/uploads
+                    ->visibility('public')      // ← pastikan visibilitasnya publik
+                    ->preserveFilenames()        // ← untuk menjaga nama file tetap sama
+                    ->enableDownload()          // ← memungkinkan file diunduh
+                    ->enableOpen()              // ← memungkinkan file dibuka
+                    ->required()
+                    ->maxSize(2048)             // ← ukuran maksimum file dalam KB (1 MB)
+                    ->acceptedFileTypes(['image/*']), // ← hanya menerima file gambar
             ]);
     }
 
@@ -41,7 +49,12 @@ class AnnouncementResource extends Resource
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('content'),
-                Tables\Columns\ImageColumn::make('image'),
+                Tables\Columns\ImageColumn::make('image')
+                    ->disk('public') // ← pastikan disk yang digunakan adalah 'public'
+                    ->size(50) // ← ukuran thumbnail
+                    ->circular() // ← membuat gambar berbentuk lingkaran
+                    ->toggleable(isToggledHiddenByDefault: true), // ← toggleable untuk kolom gambar
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -67,7 +80,7 @@ class AnnouncementResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            
         ];
     }
 

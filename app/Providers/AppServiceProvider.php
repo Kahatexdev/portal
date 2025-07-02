@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Filament\Facades\Filament;
 use Illuminate\Support\ServiceProvider;
 use livewire\Livewire;
 use Illuminate\Support\Facades\Route;
@@ -23,11 +24,12 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Livewire::setScriptRoute(function ($handle) {
-            return Route::get('/portal/public/livewire/livewire.js', $handle);
+            return Route::get('/portal/livewire/livewire.js', $handle);
         });
 
         Livewire::setUpdateRoute(function ($handle) {
-            return Route::post('/portal/public/livewire/update', $handle);
+            return Route::post('/portal/livewire/update', $handle);
         });
+
     }
 }
