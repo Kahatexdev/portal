@@ -331,90 +331,93 @@
 
                 <div class="container">
                     <div class="row align-items-center">
+                        <!-- Announcement Carousel Section -->
                         <div class="col-xl-6">
-                            <div class="announcement-hero shadow-lg">
-                              <!-- Floating Logo -->
-                              <div class="position-absolute top-50 start-50 translate-middle z-1">
-                                <img src="{{ asset('assets/images/logo/logokhtx.png') }}"
-                                     class="opacity-25 floating-logo"
-                                     style="width:clamp(100px,20vw,200px)"
-                                     alt="Background Logo" />
-                              </div>
-                          
-                              <!-- Carousel -->
-                              <div id="announcementCarousel"
-                                   class="carousel carousel-dark slide h-100"
-                                   data-bs-ride="carousel"
-                                   data-bs-interval="5000"
-                                   data-bs-pause="hover">
-                          
-                                {{-- Indicators --}}
-                                <div class="carousel-indicators">
-                                  @foreach($pengumuman as $i => $announcement)
-                                    <button
-                                      type="button"
-                                      data-bs-target="#announcementCarousel"
-                                      data-bs-slide-to="{{ $i }}"
-                                      class="rounded-circle custom-indicator @if($i===0) active @endif"
-                                      @if($i===0) aria-current="true" @endif
-                                      aria-label="Slide {{ $i+1 }}"
-                                    ></button>
-                                  @endforeach
-                                </div>
-                          
-                                {{-- Slides --}}
-                                <div class="carousel-inner h-100 rounded-4">
-                                  @foreach($pengumuman as $i => $announcement)
-                                    <div class="carousel-item h-100 @if($i===0) active @endif"
-                                         data-bs-interval="{{ $announcement->interval ?? 5000 }}">
-                                      <div class="position-relative h-100">
-                                        <img src="{{ asset($announcement->image
-                                                            ? 'public/storage/' . $announcement->image
-                                                            : 'assets/images/banner/banner-shape.png') }}"
-                                             class="d-block w-100 h-100 carousel-image"
-                                             alt="{{ $announcement->title }}" />
-                                        <div class="position-absolute top-0 start-0 w-100 h-100 carousel-overlay"></div>
-                                      </div>
-                          
-                                      <div class="carousel-caption d-block text-start">
-                                        <span class="badge bg-primary rounded-pill mb-2 px-3 py-2">
-                                          <i class="fas fa-bullhorn me-2"></i>Pengumuman
-                                        </span>
-                                        <h2 class="h4 fw-bold mb-2 text-white">
-                                          {{ $announcement->title }}
-                                        </h2>
-                                        <p class="text-white-50 mb-3 d-none d-md-block">
-                                          {{ Str::limit($announcement->body, 120) }}
-                                        </p>
-                                        <div class="d-flex align-items-center gap-3 text-white-50">
-                                          <small><i class="fas fa-calendar-alt me-2"></i>{{ $announcement->created_at->format('d M Y') }}</small>
-                                          <small class="d-none d-sm-flex"><i class="fas fa-clock me-2"></i>{{ $announcement->created_at->format('H:i') }}</small>
-                                        </div>
-                                      </div>
+                            <div class="announcement-hero shadow-lg" style="height: 500px; position: relative;">
+                                <!-- Carousel -->
+                                <div id="announcementCarousel"
+                                     class="carousel carousel-dark slide h-100"
+                                     data-bs-ride="carousel"
+                                     data-bs-interval="5000"
+                                     data-bs-pause="hover">
+                
+                                    <!-- Carousel Indicators -->
+                                    <div class="carousel-indicators">
+                                        @foreach($pengumuman as $i => $announcement)
+                                            <button type="button"
+                                                    data-bs-target="#announcementCarousel"
+                                                    data-bs-slide-to="{{ $i }}"
+                                                    class="rounded-circle custom-indicator @if($i === 0) active @endif"
+                                                    @if($i === 0) aria-current="true" @endif
+                                                    aria-label="Slide {{ $i + 1 }}">
+                                            </button>
+                                        @endforeach
                                     </div>
-                                  @endforeach
+                
+                                    <!-- Carousel Slides -->
+                                    <div class="carousel-inner h-100 rounded-4">
+                                        @foreach($pengumuman as $i => $announcement)
+                                            <div class="carousel-item h-100 @if($i === 0) active @endif"
+                                                 data-bs-interval="{{ $announcement->interval ?? 5000 }}">
+                                                
+                                                <!-- Slide Image -->
+                                                <div class="position-relative h-100">
+                                                    <img src="{{ asset($announcement->image 
+                                                                        ? 'public/storage/' . $announcement->image 
+                                                                        : 'assets/images/banner/banner-shape.png') }}"
+                                                         class="d-block w-100 h-100 carousel-image"
+                                                         alt="{{ $announcement->title }}" />
+                                                    <div class="position-absolute top-0 start-0 w-100 h-100 carousel-overlay"></div>
+                                                </div>
+                
+                                                <!-- Slide Content -->
+                                                <div class="carousel-caption d-block text-start">
+                                                    <span class="badge bg-primary rounded-pill mb-2 px-3 py-2">
+                                                        <i class="fas fa-bullhorn me-2"></i>Pengumuman
+                                                    </span>
+                                                    
+                                                    <h2 class="h4 fw-bold mb-2 text-white">
+                                                        {{ $announcement->title }}
+                                                    </h2>
+                                                    
+                                                    <p class="text-white-50 mb-3 d-none d-md-block">
+                                                        {{ Str::limit($announcement->content, 120) }}
+                                                    </p>
+                                                    
+                                                    <div class="d-flex align-items-center gap-3 text-white-50">
+                                                        <small>
+                                                            <i class="fas fa-calendar-alt me-2"></i>
+                                                            {{ $announcement->created_at->format('d M Y') }}
+                                                        </small>
+                                                        <small class="d-none d-sm-flex">
+                                                            <i class="fas fa-clock me-2"></i>
+                                                            {{ $announcement->created_at->format('H:i') }}
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                
+                                    <!-- Carousel Controls -->
+                                    <button class="carousel-control-prev custom-control" 
+                                            type="button"
+                                            data-bs-target="#announcementCarousel" 
+                                            data-bs-slide="prev">
+                                        <span class="visually-hidden">Previous</span>
+                                    </button>
+                                    
+                                    <button class="carousel-control-next custom-control" 
+                                            type="button"
+                                            data-bs-target="#announcementCarousel" 
+                                            data-bs-slide="next">
+                                        <span class="visually-hidden">Next</span>
+                                    </button>
                                 </div>
-                          
-                                {{-- Controls --}}
-                                <button class="carousel-control-prev custom-control" type="button"
-                                        data-bs-target="#announcementCarousel" data-bs-slide="prev">
-                                  <span class="custom-control-icon bg-white rounded-circle shadow">
-                                    <i class="fas fa-chevron-left text-dark"></i>
-                                  </span>
-                                  <span class="visually-hidden">Previous</span>
-                                </button>
-                                <button class="carousel-control-next custom-control" type="button"
-                                        data-bs-target="#announcementCarousel" data-bs-slide="next">
-                                  <span class="custom-control-icon bg-white rounded-circle shadow">
-                                    <i class="fas fa-chevron-right text-dark"></i>
-                                  </span>
-                                  <span class="visually-hidden">Next</span>
-                                </button>
-                              </div>
                             </div>
-                          </div>
-                          
-                        
+                        </div>
+                
+                        <!-- Language World Section -->
                         <div class="col-xl-6">
                             @php
                                 $count = $portals->count();
@@ -425,38 +428,37 @@
                                 $flagSize = 50;
                                 $flagHalf = $flagSize / 2; // 25
                             @endphp
-
-                            <div class="language-world" style="width:500px; height:500px;">
+                
+                            <div class="language-world" style="width: 500px; height: 500px;">
+                                <!-- World Background -->
                                 <div class="world">
-                                    <img src="{{ asset('assets/images/shape/world.png') }}" alt="">
+                                    <img src="{{ asset('assets/images/shape/world.png') }}" alt="World Map">
                                 </div>
+                
+                                <!-- Portal Flags -->
                                 <div class="flages">
                                     @foreach ($portals as $portal)
                                         @php
-                                            // sudut mulai atas, sebar merata
+                                            // Calculate angle for even distribution starting from top
                                             $angle = ((2 * pi()) / $count) * $loop->index - pi() / 2;
-
-                                            // posisi pusat flag
+                                            
+                                            // Calculate flag center position
                                             $x = $center + $R * cos($angle);
                                             $y = $center + $R * sin($angle);
                                         @endphp
-
-                                        <div class="flag" data-tooltip="{{ $portal->name }}" tabindex="0"
-                                            style="
-                                                position: absolute;
-                                                top:  {{ round($y - $flagHalf) }}px;
-                                                left: {{ round($x - $flagHalf) }}px;
-                                            ">
+                
+                                        <div class="flag" 
+                                             data-tooltip="{{ $portal->name }}" 
+                                             tabindex="0"
+                                             style="position: absolute; 
+                                                    top: {{ round($y - $flagHalf) }}px; 
+                                                    left: {{ round($x - $flagHalf) }}px;">
                                             <img src="{{ asset('public/storage/' . $portal->image) }}"
-                                                alt="{{ $portal->name }}">
+                                                 alt="{{ $portal->name }}">
                                         </div>
                                     @endforeach
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
