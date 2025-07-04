@@ -332,7 +332,7 @@
                 <div class="container">
                     <div class="row align-items-center">
                         <!-- Announcement Carousel Section -->
-                        <div class="col-xl-6">
+                        <div class="col-xl-6" >
                             <div class="announcement-hero shadow-lg" style="height: 500px; position: relative;">
                                 <!-- Carousel -->
                                 <div id="announcementCarousel"
@@ -356,7 +356,7 @@
                 
                                     <!-- Carousel Slides -->
                                     <div class="carousel-inner h-100 rounded-4">
-                                        @foreach($pengumuman as $i => $announcement)
+                                        @forelse($pengumuman as $i => $announcement)
                                             <div class="carousel-item h-100 @if($i === 0) active @endif"
                                                  data-bs-interval="{{ $announcement->interval ?? 5000 }}">
                                                 
@@ -364,7 +364,7 @@
                                                 <div class="position-relative h-100">
                                                     <img src="{{ asset($announcement->image 
                                                                         ? 'public/storage/' . $announcement->image 
-                                                                        : 'assets/images/banner/banner-shape.png') }}"
+                                                                        : '') }}"
                                                          class="d-block w-100 h-100 carousel-image"
                                                          alt="{{ $announcement->title }}" />
                                                     <div class="position-absolute top-0 start-0 w-100 h-100 carousel-overlay"></div>
@@ -396,7 +396,16 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                        @empty
+                                            <div class="carousel-item active h-100">
+                                                <div class="d-flex h-100 align-items-center justify-content-center">
+                                                    <img src="{{ asset('assets/images/logo/LOGOKAHATEX.png') }}" 
+                                                         alt="No Announcements" 
+                                                         class="img-fluid" 
+                                                         style="max-width: 300px;">
+                                                </div>
+                                            </div>
+                                        @endforelse
                                     </div>
                 
                                     <!-- Carousel Controls -->
