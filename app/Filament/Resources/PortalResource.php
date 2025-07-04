@@ -28,10 +28,8 @@ class PortalResource extends Resource
                     ->maxLength(255),
                 Forms\Components\Select::make('category')
                     ->options([
-                        'produksi' => 'Produksi',
-                        'bahanbaku' => 'Bahan Baku',
-                        'gudang' => 'Gudang',
-                        'komunikasi' => 'Komunikasi',
+                        'Apps' => 'Apps',
+
                     ])
                     ->default('general')
                     ->required(),
@@ -43,9 +41,9 @@ class PortalResource extends Resource
                     ->enableDownload()          // ← memungkinkan file diunduh
                     ->enableOpen()              // ← memungkinkan file dibuka
                     ->required()
-                    ->maxSize(2048)             // ← ukuran maksimum file dalam KB (1 MB)
+                    ->maxSize(20480)             // ← ukuran maksimum file dalam KB (1 MB)
                     ->acceptedFileTypes(['image/*']), // ← hanya menerima file gambar
-            Forms\Components\TextInput::make('url')
+                Forms\Components\TextInput::make('url')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('description')
@@ -64,7 +62,7 @@ class PortalResource extends Resource
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('image'),
-                
+
                 Tables\Columns\TextColumn::make('url')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('description')
