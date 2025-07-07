@@ -204,6 +204,11 @@ $header = 'false';
                 <div class="header-right">
                     <!-- Navbar Icons -->
                     <div class="rbt-btn-wrapper d-none d-xl-block ml--20">
+                        <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm hover-transform-none" href="#aduan">
+                            <span data-text="Daftar Aduan">Daftar Aduan</span>
+                        </a>
+                    </div>
+                    <div class="rbt-btn-wrapper d-none d-xl-block ml--20">
                         <a class="rbt-btn rbt-switch-btn btn-gradient btn-sm hover-transform-none" href="#portal">
                             <span data-text="Masuk Portal">Masuk Portal</span>
                         </a>
@@ -730,7 +735,7 @@ $header = 'false';
     <!-- End Countdown Area -->
 
     <!-- Start breadcrumb Area -->
-    <div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
+    <div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1" id="aduan">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
