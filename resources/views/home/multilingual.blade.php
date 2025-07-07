@@ -556,7 +556,7 @@ $header = 'false';
                                         </a>
                                     </h5>
                                     <div class="text-center">
-                                        {{ $portal->description ?? '–' }}
+                                        {{ $portal->description ?? 'â€“' }}
                                     </div>
                                 </div>
                             </div>
@@ -837,7 +837,7 @@ $header = 'false';
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
-                        <p class="rbt-link-hover text-center text-lg-start">Copyright © 2025 <a
+                        <p class="rbt-link-hover text-center text-lg-start">Copyright Â© 2025 <a
                                 href="https://woz-u.com/wp-content/uploads/2020/04/how-stressful-is-software-development-woz-u-1280x720.jpg"
                                 target="_blank">Digitalisasi Sock Team.</a></p>
                     </div>

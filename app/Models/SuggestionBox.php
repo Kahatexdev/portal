@@ -8,8 +8,11 @@ class SuggestionBox extends Model
 {
     protected $fillable = [
         'name',
-        'phone',
+        'bagian',
         'message',
+        'reply',
+        'status',
+        'replied_at',
     ];
 
     protected $casts = [
