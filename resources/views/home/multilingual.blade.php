@@ -714,7 +714,7 @@ $header = 'false';
                             </div>
                             <div class="form-group">
                                 <textarea name="message" rows="4"></textarea>
-                                <label>Saran</label>
+                                <label>Masukan Aduan disini</label>
                                 <span class="focus-border"></span>
                             </div>
                             <div class="form-submit-group mt--40">
