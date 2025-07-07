@@ -6,6 +6,11 @@ $header = 'false';
 @endphp
 
 @section('content')
+<!-- Simple‑DataTables CSS (boleh override styling-nya dengan Tailwind) -->
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css"
+/>
 
 <style>
     /* -------------------------------------
@@ -106,6 +111,14 @@ $header = 'false';
         display: none;
         /* sembunyikan ikon default */
     }
+
+    /* di resources/css/app.css (atau custom.css) */
+.dataTable-dropdown select { @apply border-gray-300 rounded px-2 py-1 }
+.dataTable-input { @apply border-gray-300 rounded px-2 py-1 w-full max-w-xs }
+.dataTable-pagination li button { @apply px-3 py-1 rounded border border-gray-300 mx-1 }
+.dataTable-pagination li.is-selected button { @apply bg-blue-600 text-white border-transparent }
+
+    
 </style>
 <!-- Start Header Area -->
 <header class="rbt-header rbt-header-default">
@@ -678,7 +691,7 @@ $header = 'false';
                 <div class="col-lg-6">
                     <div class="rbt-contact-form contact-form-style-1 w-100">
                         <div class="section-title text-start">
-                            <span class="subtitle bg-primary-opacity">KOTAK SARAN</span>
+                            <span class="subtitle bg-primary-opacity">KOTAK PENGADUAN</span>
                         </div>
                         <h3 class="title">Silahkan Isi Form di bawah ini</h3>
                         <form id="contact-form" class="w-100" action="{{ route('suggestionBox.store') }}" method="POST">
@@ -690,8 +703,8 @@ $header = 'false';
                                 <span class="focus-border"></span>
                             </div>
                             <div class="form-group">
-                                <input name="phone" type="text">
-                                <label>Telepon</label>
+                                <input name="bagian" type="text">
+                                <label>Bagian</label>
                                 <span class="focus-border"></span>
                             </div>
                             <div class="form-group">
@@ -715,6 +728,71 @@ $header = 'false';
         </div>
     </div>
     <!-- End Countdown Area -->
+
+    <!-- Start breadcrumb Area -->
+    <div class="rbt-breadcrumb-default ptb--100 ptb_md--50 ptb_sm--30 bg-gradient-1">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="breadcrumb-inner text-center">
+                        <h2 class="title">Daftar Aduan</h2>
+                        <ul class="page-list">
+                            <li class="rbt-breadcrumb-item"><a href="#">Home</a></li>
+                            <li>
+                                <div class="icon-right"><i class="feather-chevron-right"> Daftar Pengaduan</i></div>
+                            </li>
+                            <li class="rbt-breadcrumb-item active">_</li>
+                        </ul>
+                    </div>
+
+                    {{-- table from suggentions box --}}
+                    <div class="table-responsive mt-8">
+                        <table id="suggestions-table" class="min-w-full divide-y divide-gray-200">
+                          <thead class="bg-blue-600 text-white">
+                            <tr>
+                              <th class="px-4 py-2">No</th>
+                              <th class="px-4 py-2">Nama</th>
+                              <th class="px-4 py-2">Bagian</th>
+                              <th class="px-4 py-2">Saran</th>
+                              <th class="px-4 py-2">Tanggal</th>
+                              <th class="px-4 py-2">Balasan</th>
+                              <th class="px-4 py-2">Status</th>
+                            </tr>
+                          </thead>
+                          <tbody class="bg-white divide-y divide-gray-200">
+                            @foreach ($suggestions as $index => $s)
+                            <tr>
+                              <td class="px-4 py-3">{{ $index + 1 }}</td>
+                              <td class="px-4 py-3">{{ $s->name }}</td>
+                              <td class="px-4 py-3">{{ $s->bagian }}</td>
+                              <td class="px-4 py-3">{{ $s->message }}</td>
+                              <td class="px-4 py-3">{{ $s->created_at->format('d M Y H:i') }}</td>
+                              <td class="px-4 py-3">
+                                @if ($s->reply) {{ $s->reply }}
+                                @else <span class="text-gray-500">Belum ada balasan</span>
+                                @endif
+                              </td>
+                              <td class="px-4 py-3">
+                                @if ($s->status==='pending')
+                                  <span class="inline-block px-2 py-1 bg-yellow-200 text-yellow-800 rounded">Pending</span>
+                                @elseif ($s->status==='replied')
+                                  <span class="inline-block px-2 py-1 bg-green-200 text-green-800 rounded">Replied</span>
+                                @else
+                                  <span class="inline-block px-2 py-1 bg-gray-200 text-gray-600 rounded">Unknown</span>
+                                @endif
+                              </td>
+                            </tr>
+                            @endforeach
+                          </tbody>
+                        </table>
+                      </div>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Breadcrumb Area -->
+
     <!-- Start Footer aera -->
     <footer class="rbt-footer footer-style-1 bg-color-white">
         <div class="footer-top">
@@ -855,6 +933,26 @@ $header = 'false';
     </footer>
     <!-- End Footer aera -->
 </main>
+<!-- Simple‑DataTables JS -->
+<script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" defer></script>
+
+    <script>
+document.addEventListener('DOMContentLoaded', () => {
+  new simpleDatatables.DataTable("#suggestions-table", {
+    searchable: true,
+    fixedHeight: true,
+    perPage: 10,
+    sortable: true,
+    labels: {
+      placeholder: "🔍 Cari...",
+      perPage: "Menampilkan {select} entri per halaman",
+      noRows: "Data tidak ditemukan",
+      info: "Menampilkan {start}–{end} dari {rows} entri"
+    }
+  });
+});
+</script>
+  
 <script>
     // Smooth scroll effect for anchor links
     document.addEventListener('DOMContentLoaded', function() {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Announcement;
 use App\Models\Portal;
+use App\Models\SuggestionBox;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -15,8 +16,9 @@ class HomeController extends Controller
         $pengumuman = Announcement::all();
         $portals = Portal::all();
         $portalsByCategory = Portal::all()->groupBy('category');
+        $suggestions = SuggestionBox::all()->sortByDesc('created_at');
         // dd ($portals);
-        return view('home/multilingual', compact('announcements', 'portals', 'portalsByCategory', 'pengumuman'));
+        return view('home/multilingual', compact('announcements', 'portals', 'portalsByCategory', 'pengumuman', 'suggestions'));
     }
 
     public function pengumuman($id)

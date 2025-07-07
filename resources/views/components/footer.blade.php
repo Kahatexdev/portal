@@ -55,25 +55,25 @@
                         <h5 class="ft-title">Useful Links</h5>
                         <ul class="ft-link">
                             <li>
-                                <a href="{{ route('marketplace') }}">Marketplace</a>
+                                {{-- <a href="{{ route('marketplace') }}">Marketplace</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('kindergarten') }}">kindergarten</a>
+                                {{-- <a href="{{ route('kindergarten') }}">kindergarten</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('universityClassic') }}">University</a>
+                                {{-- <a href="{{ route('universityClassic') }}">University</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('gymCoaching') }}">GYM Coaching</a>
+                                {{-- <a href="{{ route('gymCoaching') }}">GYM Coaching</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('faqs') }}">FAQ</a>
+                                {{-- <a href="{{ route('faqs') }}">FAQ</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('aboutus01') }}">About Us</a>
+                                {{-- <a href="{{ route('aboutus01') }}">About Us</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('privacyPolicy') }}">Privacy policy</a>
+                                {{-- <a href="{{ route('privacyPolicy') }}">Privacy policy</a> --}}
                             </li>
                         </ul>
                     </div>
@@ -84,25 +84,25 @@
                         <h5 class="ft-title">Our Company</h5>
                         <ul class="ft-link">
                             <li>
-                                <a href="{{ route('contact') }}">Contact Us</a>
+                                {{-- <a href="{{ route('contact') }}">Contact Us</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('becomeTeacher') }}">Become Teacher</a>
+                                {{-- <a href="{{ route('becomeTeacher') }}">Become Teacher</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('blog') }}">Blog</a>
+                                {{-- <a href="{{ route('blog') }}">Blog</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('instructor') }}">Instructor</a>
+                                {{-- <a href="{{ route('instructor') }}">Instructor</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('eventList') }}">Events</a>
+                                {{-- <a href="{{ route('eventList') }}">Events</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('courseFilterOneToggle') }}">Course</a>
+                                {{-- <a href="{{ route('courseFilterOneToggle') }}">Course</a> --}}
                             </li>
                             <li>
-                                <a href="{{ route('contact') }}">Contact</a>
+                                {{-- <a href="{{ route('contact') }}">Contact</a> --}}
                             </li>
                         </ul>
                     </div>
@@ -152,9 +152,9 @@
                 <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 col-12">
                     <ul class="copyright-link rbt-link-hover justify-content-center justify-content-lg-end mt_sm--10 mt_md--10">
                         <li><a href="#">Terms of service</a></li>
-                        <li><a href="{{ route('privacyPolicy') }}">Privacy policy</a></li>
-                        <li><a href="{{ route('subscription') }}">Subscription</a></li>
-                        <li><a href="{{ route('login') }}">Login & Register</a></li>
+                        {{-- <li><a href="{{ route('privacyPolicy') }}">Privacy policy</a></li> --}}
+                        {{-- <li><a href="{{ route('subscription') }}">Subscription</a></li> --}}
+                        {{-- <li><a href="{{ route('login') }}">Login & Register</a></li> --}}
                     </ul>
                 </div>
             </div>
