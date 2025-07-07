@@ -52,8 +52,8 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://172.23.39.117/portal/'),
-    'asset_url' => env('APP_ASSET_URL', 'http://172.23.39.117/portal/'),
+    'url' => env('APP_URL', 'http://172.23.44.14/portal/'),
+    'asset_url' => env('APP_ASSET_URL', 'http://172.23.44.14/portal/'),
 
     /*
     |--------------------------------------------------------------------------

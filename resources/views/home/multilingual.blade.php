@@ -127,7 +127,7 @@ $header = 'false';
                                         <a href="mailto:bpsock@bd.kaha.com"><i class="feather-mail"></i>bpsock@bd.kaha.com</a>
                                     </li>
                                     <li>
-                                        <a href="#"><i class="feather-phone"></i>612</a>
+                                        <a href="#"><i class="feather-phone"></i>606</a>
                                     </li>
                                 </ul>
                             </div>
@@ -654,7 +654,7 @@ $header = 'false';
                             <h2 class="title color-white">Silakan Hubungi Kami :</h2>
                             <p class="description has-medium-font-size mt--20 mb--0 color-white opacity-7">
                                 Email: <a href="mailto:bpsock@bd.kaha.com" class="color-white">bpsock@bd.kaha.com</a><br>
-                                Telepon: <a href="tel:602" class="color-white">612</a>
+                                Telepon: <a href="tel:602" class="color-white">606</a>
                             </p>
                         </div>
                         <div class="countdown-style-1 mt--50">
@@ -818,7 +818,7 @@ $header = 'false';
                         <div class="footer-widget">
                             <h5 class="ft-title">Hubungi Kami</h5>
                             <ul class="ft-link">
-                                <li><span>Telepon :</span> <a href="#">612</a></li>
+                                <li><span>Telepon :</span> <a href="#">606</a></li>
                                 <li><span>E-mail :</span> <a href="mailto:bpsock@bd.kaha.com">bpsock@bd.kaha.com</a></li>
                                 {{-- <li><span>Lokasi :</span> <a href="#">BP TrainingSchool</a></li> --}}
                             </ul>
