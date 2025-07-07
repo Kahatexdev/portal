@@ -574,7 +574,7 @@ $header = 'false';
                                         </a>
                                     </h5>
                                     <div class="text-center">
-                                        {{ $portal->description ?? 'â€“' }}
+                                        {{ $portal->description ?? '' }}
                                     </div>
                                 </div>
                             </div>
