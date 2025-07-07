@@ -744,9 +744,9 @@ $header = 'false';
                         <ul class="page-list">
                             <li class="rbt-breadcrumb-item"><a href="#">Home</a></li>
                             <li>
-                                <div class="icon-right"><i class="feather-chevron-right"> Daftar Pengaduan</i></div>
+                                <div class="icon-right"><i class="feather-chevron-right"></i></div>
                             </li>
-                            <li class="rbt-breadcrumb-item active">_</li>
+                            <li class="rbt-breadcrumb-item active">Daftar Pengaduan</li>
                         </ul>
                     </div>
 
