@@ -19,7 +19,7 @@
                         </a>
                     </div>
                     <div class="product-content">
-                        <h6 class="title"><a href="{{ route('singleProduct') }}">Miracle Morning</a></h6>
+                        {{-- <h6 class="title"><a href="{{ route('singleProduct') }}">Miracle Morning</a></h6> --}}
 
                         <span class="quantity">1 * <span class="price">$22</span></span>
                     </div>
@@ -35,7 +35,7 @@
                         </a>
                     </div>
                     <div class="product-content">
-                        <h6 class="title"><a href="{{ route('singleProduct') }}">Happy Strong</a></h6>
+                        {{-- <h6 class="title"><a href="{{ route('singleProduct') }}">Happy Strong</a></h6> --}}
 
                         <span class="quantity">1 * <span class="price">$30</span></span>
                     </div>
@@ -51,7 +51,7 @@
                         </a>
                     </div>
                     <div class="product-content">
-                        <h6 class="title"><a href="{{ route('singleProduct') }}">Rich Dad Poor Dad</a></h6>
+                        {{-- <h6 class="title"><a href="{{ route('singleProduct') }}">Rich Dad Poor Dad</a></h6> --}}
 
                         <span class="quantity">1 * <span class="price">$50</span></span>
                     </div>
@@ -67,7 +67,7 @@
                         </a>
                     </div>
                     <div class="product-content">
-                        <h6 class="title"><a href="{{ route('singleProduct') }}">Momentum Theorem</a></h6>
+                        {{-- <h6 class="title"><a href="{{ route('singleProduct') }}">Momentum Theorem</a></h6> --}}
 
                         <span class="quantity">1 * <span class="price">$50</span></span>
                     </div>
